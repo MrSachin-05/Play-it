@@ -1,25 +1,26 @@
 import React, { useRef } from "react";
 import VideoJS from "./videojs";
+import "./App.css";
 
 const VideoJSPlayer = () => {
   const playerRef = useRef(null);
 
-  // Video.js configuration with HLS for quality switching
   const videoJsOptions = {
     controls: true,
     responsive: true,
     fluid: true,
     autoplay: false,
     muted: true,
+
     playbackRates: [0.25, 0.5, 1, 1.5, 2],
+
     sources: [
       {
-        // Using ImageKit's HLS manifest URL
         src: "https://ik.imagekit.io/ravh0usvw/play-it_pr.mp4/ik-master.m3u8?tr=sr-240_360_480_720_1080",
-        // src: "https://ik.imagekit.io/roadsidecoder/yt/example.mp4/ik-master.m3u8?tr=sr-240_360_480_720_1080,l-subtitles,i-yt/english.srt,l-end",
         type: "application/x-mpegURL",
       },
     ],
+
     poster:
       "https://ik.imagekit.io/ravh0usvw/play-it_pr.mp4/ik-thumbnail.jpg?tr=w-1200,h-680,so-5",
 
@@ -51,7 +52,6 @@ const VideoJSPlayer = () => {
   const handlePlayerReady = (player) => {
     playerRef.current = player;
 
-    // Log when player events occur
     player.on("waiting", () => {
       console.log("Player is waiting");
     });
@@ -66,13 +66,42 @@ const VideoJSPlayer = () => {
   };
 
   return (
-    <div style={{ margin: "20px 0" }}>
-      <h2>Video.js Player with Quality Selection</h2>
+    <main className="playit-page">
+      <div className="playit-layout">
 
-      <div style={{ maxWidth: "800px" }}>
-        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+        {/* ================= VIDEO SECTION ================= */}
+        <section className="playit-video-section">
+          <div className="playit-video-card">
+            <VideoJS
+              options={videoJsOptions}
+              onReady={handlePlayerReady}
+            />
+          </div>
+
+          <div className="playit-video-info">
+            <h2>Welcome to Play-it</h2>
+
+            <p>
+              Watch your video with subtitles, quality selection,
+              playback speed and responsive controls.
+            </p>
+          </div>
+        </section>
+
+        {/* ================= RIGHT SECTION ================= */}
+        <aside className="playit-side-section">
+          <div className="playit-side-card">
+            <h3>Play-it</h3>
+
+            <p>
+              Video information and additional content can be
+              displayed here.
+            </p>
+          </div>
+        </aside>
+
       </div>
-    </div>
+    </main>
   );
 };
 

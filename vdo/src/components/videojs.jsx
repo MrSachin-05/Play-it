@@ -14,7 +14,12 @@ const VideoJS = ({ options, onReady }) => {
 
     if (!playerRef.current) {
       const videoElement = document.createElement("video-js");
-      videoElement.classList.add("vjs-big-play-centered", "video-js");
+
+      videoElement.classList.add(
+        "vjs-big-play-centered",
+        "video-js"
+      );
+
       videoRef.current.appendChild(videoElement);
 
       const player = videojs(videoElement, options, () => {
@@ -22,21 +27,30 @@ const VideoJS = ({ options, onReady }) => {
         onReady && onReady(player);
       });
 
-      console.log(player);
-
       player.ready(() => {
         if (typeof player.httpSourceSelector === "function") {
-          player.httpSourceSelector({ default: "auto" });
+          player.httpSourceSelector({
+            default: "auto",
+          });
         }
       });
 
       playerRef.current = player;
     }
+
+    return () => {
+      if (playerRef.current && !playerRef.current.isDisposed()) {
+        playerRef.current.dispose();
+        playerRef.current = null;
+      }
+    };
   }, [options, onReady]);
 
   return (
-    <div data-vjs-player>
-      <div ref={videoRef} />
+    <div className="playit-videojs">
+      <div data-vjs-player>
+        <div ref={videoRef} />
+      </div>
     </div>
   );
 };
