@@ -11,7 +11,7 @@
 
 
 /* =========================================================
-   MAIN TWO-COLUMN LAYOUT
+   MAIN LAYOUT
    ========================================================= */
 
 .playit-layout {
@@ -20,7 +20,14 @@
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+
+  /*
+   * Left 55%  → Video
+   * Right 45% → Additional content
+   */
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(280px, 0.85fr);
 
   gap: 24px;
 
@@ -58,7 +65,7 @@
 
 
 /* =========================================================
-   VIDEO.JS CONTAINER
+   VIDEO.JS WRAPPER
    ========================================================= */
 
 .playit-videojs {
@@ -92,15 +99,17 @@
 
   aspect-ratio: 16 / 9;
 
+  margin: 0;
+
   overflow: hidden;
 
   background: #000;
-
-  margin: 0;
 }
 
 
-/* Video.js actual video */
+/* =========================================================
+   ACTUAL VIDEO
+   ========================================================= */
 
 .playit-videojs .video-js .vjs-tech {
   width: 100% !important;
@@ -116,7 +125,6 @@
 
 .playit-video-info {
   width: 100%;
-
   padding: 16px 4px;
 }
 
@@ -132,10 +140,10 @@
 .playit-video-info p {
   margin: 0;
 
-  color: #6b7280;
-
   font-size: 14px;
   line-height: 1.6;
+
+  color: #6b7280;
 }
 
 
@@ -150,7 +158,6 @@
 
 .playit-side-card {
   width: 100%;
-
   min-height: 200px;
 
   padding: 20px;
@@ -187,14 +194,16 @@
    ========================================================= */
 
 @media (max-width: 1000px) {
-  .playit-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.7fr);
-
-    gap: 16px;
-  }
-
   .playit-page {
     padding: 16px;
+  }
+
+  .playit-layout {
+    grid-template-columns:
+      minmax(0, 1.1fr)
+      minmax(220px, 0.8fr);
+
+    gap: 16px;
   }
 }
 
@@ -217,13 +226,13 @@
     border-radius: 0;
   }
 
+  .playit-video-info {
+    padding: 16px;
+  }
+
   .playit-side-section {
     margin-top: 16px;
     padding: 0 16px;
-  }
-
-  .playit-video-info {
-    padding: 16px;
   }
 }
 

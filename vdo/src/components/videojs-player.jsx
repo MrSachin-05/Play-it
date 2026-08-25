@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import VideoJS from "./videojs";
-import "./App.css";
+import "../App.css";
 
 const VideoJSPlayer = () => {
   const playerRef = useRef(null);
@@ -69,7 +69,7 @@ const VideoJSPlayer = () => {
     <main className="playit-page">
       <div className="playit-layout">
 
-        {/* ================= VIDEO SECTION ================= */}
+        {/* ================= VIDEO ================= */}
         <section className="playit-video-section">
           <div className="playit-video-card">
             <VideoJS
@@ -88,7 +88,7 @@ const VideoJSPlayer = () => {
           </div>
         </section>
 
-        {/* ================= RIGHT SECTION ================= */}
+        {/* ================= SIDE CONTENT ================= */}
         <aside className="playit-side-section">
           <div className="playit-side-card">
             <h3>Play-it</h3>
